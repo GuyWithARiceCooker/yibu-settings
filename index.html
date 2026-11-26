@@ -228,5 +228,65 @@
       </div>
     </main>
   </div>
+  <script>
+  (function () {
+    var INTERVAL = 30000;
+    var baseline = null;
+    var busy = false;
+
+    function hash(s) {
+      var h = 5381;
+      for (var i = 0; i < s.length; i++) { h = ((h << 5) + h + s.charCodeAt(i)) | 0; }
+      return String(h);
+    }
+
+    function bust(url) {
+      return url + (url.indexOf('?') < 0 ? '?' : '&') + 'v=' + Date.now();
+    }
+
+    function load(url) {
+      return fetch(bust(url), { cache: 'no-store' }).then(function (r) {
+        if (!r.ok) { throw new Error(r.status); }
+        return r;
+      });
+    }
+
+    function pageFingerprint() {
+      return load(location.pathname).then(function (r) { return r.text(); }).then(hash);
+    }
+
+    function imageFingerprint() {
+      return load('yibu-tutor.png').then(function (r) {
+        var h = r.headers;
+        var tag = h.get('etag') || h.get('last-modified');
+        if (tag) { return tag; }
+        var len = h.get('content-length');
+        if (len) { return 'len:' + len; }
+        return r.arrayBuffer().then(function (buf) {
+          var bytes = new Uint8Array(buf), x = 5381;
+          for (var i = 0; i < bytes.length; i++) { x = ((x << 5) + x + bytes[i]) | 0; }
+          return 'bytes:' + x;
+        });
+      });
+    }
+
+    function check() {
+      if (document.hidden || busy) { return; }
+      busy = true;
+      Promise.all([pageFingerprint(), imageFingerprint()]).then(function (f) {
+        busy = false;
+        var now = f[0] + '|' + f[1];
+        if (baseline === null) { baseline = now; }
+        else if (baseline !== now) { location.reload(); }
+      }, function () { busy = false; });
+    }
+
+    setInterval(check, INTERVAL);
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) { check(); }
+    });
+    check();
+  })();
+  </script>
 </body>
 </html>

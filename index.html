@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>Yibu — Tutor Settings</title>
+  <style>
+    :root {
+      --teal: #0d8f7e;
+      --teal-dark: #0a6e61;
+      --teal-deep: #08574d;
+      --teal-soft: #e7f6f3;
+      --teal-mid: #b9e3db;
+      --bg: #f3f7f6;
+      --bg-tint: #eaf3f1;
+      --card: #ffffff;
+      --ink: #142421;
+      --muted: #5a6e69;
+      --line: #d5e3df;
+      --learner: #eef2f1;
+      --shadow: 0 8px 28px rgba(20, 36, 33, 0.08), 0 1px 2px rgba(20, 36, 33, 0.04);
+      --radius: 20px;
+      --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      --focus: 0 0 0 3px var(--card), 0 0 0 5px var(--teal);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font);
+      background:
+        radial-gradient(1200px 500px at 10% -10%, #d9f3ee 0%, transparent 55%),
+        radial-gradient(900px 400px at 100% 0%, #e8f4e8 0%, transparent 50%),
+        var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app {
+      width: min(720px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 48px;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(160deg, #19b39f 0%, var(--teal-dark) 100%);
+      color: #fff;
+      font-weight: 750;
+      font-size: 1.35rem;
+      letter-spacing: -0.04em;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 6px 16px rgba(13, 143, 126, 0.28);
+      flex-shrink: 0;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+
+    .brand p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(213, 227, 223, 0.8);
+      padding: 22px 22px 20px;
+    }
+
+    .card + .card { margin-top: 16px; }
+
+    .card h2 {
+      margin: 0 0 4px;
+      font-size: 1.12rem;
+      letter-spacing: -0.02em;
+    }
+
+    .lede, .preview-kicker {
+      margin: 0 0 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .setting { margin-bottom: 18px; }
+
+    .setting-label {
+      display: block;
+      font-weight: 650;
+      font-size: 0.95rem;
+      margin-bottom: 2px;
+    }
+
+    .setting-help {
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
+
+    .segments {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      padding: 4px;
+      background: var(--bg-tint);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+
+    .segments button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+      font-weight: 600;
+      font-size: 0.88rem;
+      min-height: 44px;
+      padding: 8px 6px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .segments button:hover:not([aria-pressed="true"]) {
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .segments button[aria-pressed="true"] {
+      background: var(--card);
+      color: var(--teal-dark);
+      box-shadow: 0 1px 2px rgba(20, 36, 33, 0.08), 0 0 0 1px rgba(13, 143, 126, 0.16);
+    }
+
+    .segments button:focus { outline: none; }
+
+    .segments button:focus-visible {
+      outline: none;
+      box-shadow: var(--focus);
+      position: relative;
+      z-index: 1;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 16px;
+      margin-top: 6px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+    }
+
+    .summary {
+      margin: 0;
+      flex: 1 1 220px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .summary strong { color: var(--ink); font-weight: 650; }
+
+    #reset {
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--teal-dark);
+      font: inherit;
+      font-weight: 650;
+      font-size: 0.88rem;
+      min-height: 44px;
+      padding: 8px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    #reset:hover { border-color: var(--teal-mid); background: var(--teal-soft); }
+
+    #reset:focus { outline: none; }
+
+    #reset:focus-visible { box-shadow: var(--focus); }
+
+    .chat {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+      max-width: 100%;
+    }
+
+    .row.yibu-row { flex-direction: row; }
+
+    .row.you-row { flex-direction: row; }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
+    }
+
+    .avatar.you {
+      background: #dfe7e5;
+      color: #3d524e;
+    }
+
+    .avatar.yibu {
+      background: linear-gradient(160deg, #19b39f, var(--teal-dark));
+      color: #fff;
+    }
+
+    .bubble-wrap { min-width: 0; flex: 1; }
+
+    .who {
+      font-size: 0.75rem;
+      font-weight: 650;
+      color: var(--muted);
+      margin: 0 0 4px 6px;
+    }
+
+    .bubble {
+      border-radius: 16px;
+      padding: 11px 14px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .bubble.you {
+      background: var(--learner);
+      color: var(--ink);
+      border-bottom-left-radius: 6px;
+    }
+
+    .bubble.yibu {
+      background: var(--teal-soft);
+      color: var(--ink);
+      border: 1px solid #cfeae5;
+      border-bottom-left-radius: 6px;
+    }
+
+    .bubble.cut {
+      font-style: italic;
+    }
+
+    .interrupt-note {
+      margin: 14px 0 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    .preview-card .preview-kicker { margin-bottom: 14px; }
+
+    @media (max-width: 520px) {
+      .app { width: min(720px, calc(100% - 20px)); padding-top: 20px; }
+      .card { padding: 18px 16px 16px; border-radius: 16px; }
+      .segments button { font-size: 0.8rem; padding: 8px 4px; }
+      #reset { width: 100%; margin-left: 0; }
+      .summary { flex-basis: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .segments button, #reset { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="mark" aria-hidden="true">Y</div>
+      <div class="brand">
+        <h1>Yibu</h1>
+        <p>Your friendly English tutor</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="card" aria-labelledby="settings-heading">
+        <h2 id="settings-heading">Tutor settings</h2>
+        <p class="lede">Choose how Yibu helps you practice. The preview updates as you go.</p>
+
+        <div class="setting">
+          <span class="setting-label" id="correction-label">Correction strictness</span>
+          <span class="setting-help" id="correction-help">How firmly Yibu corrects mistakes</span>
+          <div class="segments" role="group" aria-labelledby="correction-label" aria-describedby="correction-help" data-setting="correction">
+            <button type="button" data-value="off" aria-pressed="false">Off</button>
+            <button type="button" data-value="light" aria-pressed="false">Light</button>
+            <button type="button" data-value="strict" aria-pressed="false">Strict</button>
+          </div>
+        </div>
+
+        <div class="setting">
+          <span class="setting-label" id="topic-label">Topic style</span>
+          <span class="setting-help" id="topic-help">What Yibu steers the conversation toward</span>
+          <div class="segments" role="group" aria-labelledby="topic-label" aria-describedby="topic-help" data-setting="topic">
+            <button type="button" data-value="free-chat" aria-pressed="false">Free chat</button>
+            <button type="button" data-value="news" aria-pressed="false">News</button>
+            <button type="button" data-value="interests" aria-pressed="false">Interests</button>
+          </div>
+        </div>
+
+        <div class="setting">
+          <span class="setting-label" id="interruption-label">Interruption frequency</span>
+          <span class="setting-help" id="interruption-help">How often Yibu jumps in while you speak</span>
+          <div class="segments" role="group" aria-labelledby="interruption-label" aria-describedby="interruption-help" data-setting="interruption">
+            <button type="button" data-value="never" aria-pressed="false">Never</button>
+            <button type="button" data-value="when-needed" aria-pressed="false">When needed</button>
+            <button type="button" data-value="often" aria-pressed="false">Often</button>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <p class="summary" id="summary" aria-live="polite"></p>
+          <button type="button" id="reset">Reset to defaults</button>
+        </div>
+      </section>
+
+      <section class="card preview-card" aria-labelledby="preview-heading">
+        <h2 id="preview-heading">Live preview</h2>
+        <p class="preview-kicker">A practice turn with a common mistake: “Yesterday I go to the park.”</p>
+        <div class="chat" id="chat">
+          <div class="row you-row">
+            <div class="avatar you" aria-hidden="true">You</div>
+            <div class="bubble-wrap">
+              <p class="who">You</p>
+              <div class="bubble you" id="learner-bubble"></div>
+            </div>
+          </div>
+          <div class="row yibu-row">
+            <div class="avatar yibu" aria-hidden="true">Y</div>
+            <div class="bubble-wrap">
+              <p class="who">Yibu</p>
+              <div class="bubble yibu" id="yibu-bubble" aria-live="polite"></div>
+            </div>
+          </div>
+        </div>
+        <p class="interrupt-note" id="interrupt-note"></p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      var STORAGE_KEY = "yibu-settings";
+      var DEFAULTS = {
+        correction: "light",
+        topic: "free-chat",
+        interruption: "when-needed"
+      };
+
+      var ALLOWED = {
+        correction: { off: true, light: true, strict: true },
+        topic: { "free-chat": true, news: true, interests: true },
+        interruption: { never: true, "when-needed": true, often: true }
+      };
+
+      var LABELS = {
+        correction: { off: "Off", light: "Light", strict: "Strict" },
+        topic: { "free-chat": "Free chat", news: "News", interests: "Interests" },
+        interruption: { never: "Never", "when-needed": "When needed", often: "Often" }
+      };
+
+      var LEARNER = {
+        never: "Yesterday I go to the park. It was really nice and I stay for an hour.",
+        "when-needed": "Yesterday I go to the park.",
+        often: "Yesterday I go to the—"
+      };
+
+      var CORRECTION = {
+        off: {
+          never: "What a nice outing — thanks for telling me about it.",
+          "when-needed": "I’ll leave the grammar as it is. That sounds like a really nice outing.",
+          often: "Oh, I don’t mean to cut you off — that already sounds like a really nice outing!"
+        },
+        light: {
+          never: "Lovely. So yesterday you went to the park.",
+          "when-needed": "A gentle recast, now that you’ve finished: yesterday you went to the park.",
+          often: "—you went to the park, yes? Just a soft recast there."
+        },
+        strict: {
+          never: "Before we go on, one grammar note: we say “Yesterday I went to the park,” not “I go.” After “yesterday,” use the past tense “went.”",
+          "when-needed": "One correction at the end: it’s “I went to the park,” not “I go.” “Went” is the past tense of “go.”",
+          often: "Hold on — “I went,” not “I go.” “Yesterday” already marks the past, so we need “went.”"
+        }
+      };
+
+      var TOPIC = {
+        "free-chat": {
+          never: "I’d love to hear what you did there and how the rest of your day went.",
+          "when-needed": "What did you do at the park? Did you go with anyone?",
+          often: "What did you do once you arrived?"
+        },
+        news: {
+          never: "I’m also curious whether you came across any of the news about the city’s new park renovation plans.",
+          "when-needed": "Have you seen this week’s news about the city’s park renovations?",
+          often: "Have you caught the news about the city’s park renovation plans?"
+        },
+        interests: {
+          never: "I’d also like to know whether being outdoors is one of your usual interests, or more of a rare treat.",
+          "when-needed": "Is walking in parks one of your interests, or was this a one-off visit?",
+          often: "Do you enjoy parks and being outdoors, or was this a one-off?"
+        }
+      };
+
+      var INTERRUPT_NOTE = {
+        never: "Yibu waits until you finish speaking, then replies in full.",
+        "when-needed": "Yibu lets you finish, then steps in if something is worth noting.",
+        often: "Yibu jumps in mid-sentence."
+      };
+
+      var state = loadState();
+
+      var learnerBubble = document.getElementById("learner-bubble");
+      var yibuBubble = document.getElementById("yibu-bubble");
+      var summaryEl = document.getElementById("summary");
+      var noteEl = document.getElementById("interrupt-note");
+      var resetBtn = document.getElementById("reset");
+
+      function loadState() {
+        var next = {
+          correction: DEFAULTS.correction,
+          topic: DEFAULTS.topic,
+          interruption: DEFAULTS.interruption
+        };
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return next;
+          var parsed = JSON.parse(raw);
+          if (parsed && typeof parsed === "object") {
+            if (ALLOWED.correction[parsed.correction]) next.correction = parsed.correction;
+            if (ALLOWED.topic[parsed.topic]) next.topic = parsed.topic;
+            if (ALLOWED.interruption[parsed.interruption]) next.interruption = parsed.interruption;
+          }
+        } catch (err) {
+          /* keep defaults if storage is unavailable or corrupt */
+        }
+        return next;
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            correction: state.correction,
+            topic: state.topic,
+            interruption: state.interruption
+          }));
+        } catch (err) {
+          /* ignore quota / private-mode errors */
+        }
+      }
+
+      function yibuReply() {
+        return CORRECTION[state.correction][state.interruption] + " " +
+          TOPIC[state.topic][state.interruption];
+      }
+
+      function render() {
+        document.querySelectorAll(".segments").forEach(function (group) {
+          var key = group.getAttribute("data-setting");
+          group.querySelectorAll("button[data-value]").forEach(function (btn) {
+            btn.setAttribute("aria-pressed", btn.getAttribute("data-value") === state[key] ? "true" : "false");
+          });
+        });
+
+        learnerBubble.textContent = LEARNER[state.interruption];
+        learnerBubble.classList.toggle("cut", state.interruption === "often");
+        yibuBubble.textContent = yibuReply();
+        noteEl.textContent = INTERRUPT_NOTE[state.interruption];
+        summaryEl.textContent = "";
+        summaryEl.appendChild(document.createTextNode("Current settings: "));
+
+        var bits = [
+          ["Correction", LABELS.correction[state.correction]],
+          ["Topic", LABELS.topic[state.topic]],
+          ["Interruptions", LABELS.interruption[state.interruption]]
+        ];
+        bits.forEach(function (bit, i) {
+          if (i) summaryEl.appendChild(document.createTextNode(" · "));
+          var strong = document.createElement("strong");
+          strong.textContent = bit[0] + ": " + bit[1];
+          summaryEl.appendChild(strong);
+        });
+      }
+
+      function setSetting(key, value) {
+        if (!ALLOWED[key] || !ALLOWED[key][value]) return;
+        if (state[key] === value) return;
+        state[key] = value;
+        saveState();
+        render();
+      }
+
+      document.querySelectorAll(".segments").forEach(function (group) {
+        var key = group.getAttribute("data-setting");
+        var buttons = Array.prototype.slice.call(group.querySelectorAll("button[data-value]"));
+
+        buttons.forEach(function (btn, index) {
+          btn.addEventListener("click", function () {
+            setSetting(key, btn.getAttribute("data-value"));
+          });
+
+          btn.addEventListener("keydown", function (event) {
+            var nextIndex = index;
+            if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+              nextIndex = (index + 1) % buttons.length;
+            } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+              nextIndex = (index - 1 + buttons.length) % buttons.length;
+            } else if (event.key === "Home") {
+              nextIndex = 0;
+            } else if (event.key === "End") {
+              nextIndex = buttons.length - 1;
+            } else {
+              return;
+            }
+            event.preventDefault();
+            var target = buttons[nextIndex];
+            setSetting(key, target.getAttribute("data-value"));
+            target.focus();
+          });
+        });
+      });
+
+      resetBtn.addEventListener("click", function () {
+        state.correction = DEFAULTS.correction;
+        state.topic = DEFAULTS.topic;
+        state.interruption = DEFAULTS.interruption;
+        saveState();
+        render();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

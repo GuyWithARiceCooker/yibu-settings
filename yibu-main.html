@@ -94,6 +94,19 @@
 
     .card + .card { margin-top: 16px; }
 
+    .tutor-img {
+      display: block;
+      width: 200px;
+      max-width: 60%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      margin: 0 0 18px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--teal-mid);
+      box-shadow: var(--shadow);
+    }
+
     .hero h2 {
       margin: 0 0 10px;
       font-size: 1.55rem;
@@ -163,6 +176,7 @@
       .app { width: min(720px, calc(100% - 20px)); padding-top: 20px; }
       .card { padding: 18px 16px 16px; border-radius: 16px; }
       .hero h2 { font-size: 1.35rem; }
+      .tutor-img { width: 160px; margin-left: auto; margin-right: auto; }
       .features { grid-template-columns: 1fr; }
       .cta { width: 100%; }
     }
@@ -184,6 +198,7 @@
 
     <main>
       <section class="card hero" aria-labelledby="hero-heading">
+        <img class="tutor-img" src="yibu-tutor.png" alt="一步 Yibu 语言学习助手" width="200" height="200">
         <h2 id="hero-heading">轻松开口，和一步一起练英语</h2>
         <p class="lede">一步是一款英语学习应用。你可以随时和导师一步聊天练习，围绕新闻或自己感兴趣的话题展开对话，并在需要时得到温和、清晰的纠正。想先看看一步会怎么回应？来调整一下导师设置吧。</p>
         <a class="cta" href="yibu-settings.html">打开导师设置</a>

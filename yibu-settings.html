@@ -329,11 +329,11 @@
     <main>
       <section class="card" aria-labelledby="settings-heading">
         <h2 id="settings-heading">Tutor settings</h2>
-        <p class="lede">Choose how Yibu helps you practice. The preview updates as you go.</p>
+        <p class="lede">Choose how Maria helps you practice. The preview updates as you go.</p>
 
         <div class="setting">
           <span class="setting-label" id="correction-label">Correction strictness</span>
-          <span class="setting-help" id="correction-help">How firmly Yibu corrects mistakes</span>
+          <span class="setting-help" id="correction-help">How firmly Maria corrects mistakes</span>
           <div class="segments" role="group" aria-labelledby="correction-label" aria-describedby="correction-help" data-setting="correction">
             <button type="button" data-value="off" aria-pressed="false">Off</button>
             <button type="button" data-value="light" aria-pressed="false">Light</button>
@@ -343,7 +343,7 @@
 
         <div class="setting">
           <span class="setting-label" id="topic-label">Topic style</span>
-          <span class="setting-help" id="topic-help">What Yibu steers the conversation toward</span>
+          <span class="setting-help" id="topic-help">What Maria steers the conversation toward</span>
           <div class="segments" role="group" aria-labelledby="topic-label" aria-describedby="topic-help" data-setting="topic">
             <button type="button" data-value="free-chat" aria-pressed="false">Free chat</button>
             <button type="button" data-value="news" aria-pressed="false">News</button>
@@ -353,7 +353,7 @@
 
         <div class="setting">
           <span class="setting-label" id="interruption-label">Interruption frequency</span>
-          <span class="setting-help" id="interruption-help">How often Yibu jumps in while you speak</span>
+          <span class="setting-help" id="interruption-help">How often Maria jumps in while you speak</span>
           <div class="segments" role="group" aria-labelledby="interruption-label" aria-describedby="interruption-help" data-setting="interruption">
             <button type="button" data-value="never" aria-pressed="false">Never</button>
             <button type="button" data-value="when-needed" aria-pressed="false">When needed</button>
@@ -379,9 +379,9 @@
             </div>
           </div>
           <div class="row yibu-row">
-            <div class="avatar yibu" aria-hidden="true">Y</div>
+            <div class="avatar yibu" aria-hidden="true">M</div>
             <div class="bubble-wrap">
-              <p class="who">Yibu</p>
+              <p class="who">Maria</p>
               <div class="bubble yibu" id="yibu-bubble" aria-live="polite"></div>
             </div>
           </div>
@@ -457,9 +457,9 @@
       };
 
       var INTERRUPT_NOTE = {
-        never: "Yibu waits until you finish speaking, then replies in full.",
-        "when-needed": "Yibu lets you finish, then steps in if something is worth noting.",
-        often: "Yibu jumps in mid-sentence."
+        never: "Maria waits until you finish speaking, then replies in full.",
+        "when-needed": "Maria lets you finish, then steps in if something is worth noting.",
+        often: "Maria jumps in mid-sentence."
       };
 
       var state = loadState();

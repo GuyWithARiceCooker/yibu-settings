@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light">
-  <title>一步 Yibu — 导师设置</title>
+  <title>Yibu — Tutor Settings</title>
   <style>
     :root {
       --teal: #0d8f7e;
@@ -320,68 +320,68 @@
     <header>
       <div class="mark" aria-hidden="true">Y</div>
       <div class="brand">
-        <h1>一步 Yibu</h1>
-        <p>你的贴心英语导师</p>
+        <h1>Yibu</h1>
+        <p>Your friendly English tutor</p>
       </div>
-      <a class="home-link" href="index.html">返回首页</a>
+      <a class="home-link" href="index.html">Back to home</a>
     </header>
 
     <main>
       <section class="card" aria-labelledby="settings-heading">
-        <h2 id="settings-heading">导师设置</h2>
-        <p class="lede">选择一步如何帮你练习。预览会随着你的选择即时更新。</p>
+        <h2 id="settings-heading">Tutor settings</h2>
+        <p class="lede">Choose how Yibu helps you practice. The preview updates as you go.</p>
 
         <div class="setting">
-          <span class="setting-label" id="correction-label">纠错严格程度</span>
-          <span class="setting-help" id="correction-help">一步纠正错误时有多严格</span>
+          <span class="setting-label" id="correction-label">Correction strictness</span>
+          <span class="setting-help" id="correction-help">How firmly Yibu corrects mistakes</span>
           <div class="segments" role="group" aria-labelledby="correction-label" aria-describedby="correction-help" data-setting="correction">
-            <button type="button" data-value="off" aria-pressed="false">关闭</button>
-            <button type="button" data-value="light" aria-pressed="false">轻度</button>
-            <button type="button" data-value="strict" aria-pressed="false">严格</button>
+            <button type="button" data-value="off" aria-pressed="false">Off</button>
+            <button type="button" data-value="light" aria-pressed="false">Light</button>
+            <button type="button" data-value="strict" aria-pressed="false">Strict</button>
           </div>
         </div>
 
         <div class="setting">
-          <span class="setting-label" id="topic-label">话题风格</span>
-          <span class="setting-help" id="topic-help">一步会把对话引向什么方向</span>
+          <span class="setting-label" id="topic-label">Topic style</span>
+          <span class="setting-help" id="topic-help">What Yibu steers the conversation toward</span>
           <div class="segments" role="group" aria-labelledby="topic-label" aria-describedby="topic-help" data-setting="topic">
-            <button type="button" data-value="free-chat" aria-pressed="false">自由聊天</button>
-            <button type="button" data-value="news" aria-pressed="false">新闻</button>
-            <button type="button" data-value="interests" aria-pressed="false">兴趣</button>
+            <button type="button" data-value="free-chat" aria-pressed="false">Free chat</button>
+            <button type="button" data-value="news" aria-pressed="false">News</button>
+            <button type="button" data-value="interests" aria-pressed="false">Interests</button>
           </div>
         </div>
 
         <div class="setting">
-          <span class="setting-label" id="interruption-label">打断频率</span>
-          <span class="setting-help" id="interruption-help">你说话时，一步会多久插话一次</span>
+          <span class="setting-label" id="interruption-label">Interruption frequency</span>
+          <span class="setting-help" id="interruption-help">How often Yibu jumps in while you speak</span>
           <div class="segments" role="group" aria-labelledby="interruption-label" aria-describedby="interruption-help" data-setting="interruption">
-            <button type="button" data-value="never" aria-pressed="false">从不</button>
-            <button type="button" data-value="when-needed" aria-pressed="false">需要时</button>
-            <button type="button" data-value="often" aria-pressed="false">经常</button>
+            <button type="button" data-value="never" aria-pressed="false">Never</button>
+            <button type="button" data-value="when-needed" aria-pressed="false">When needed</button>
+            <button type="button" data-value="often" aria-pressed="false">Often</button>
           </div>
         </div>
 
         <div class="toolbar">
           <p class="summary" id="summary" aria-live="polite"></p>
-          <button type="button" id="reset">恢复默认设置</button>
+          <button type="button" id="reset">Reset to defaults</button>
         </div>
       </section>
 
       <section class="card preview-card" aria-labelledby="preview-heading">
-        <h2 id="preview-heading">实时预览</h2>
-        <p class="preview-kicker">一段带有常见错误的练习对话：“Yesterday I go to the park.”</p>
+        <h2 id="preview-heading">Live preview</h2>
+        <p class="preview-kicker">A practice turn with a common mistake: “Yesterday I go to the park.”</p>
         <div class="chat" id="chat">
           <div class="row you-row">
-            <div class="avatar you" aria-hidden="true">你</div>
+            <div class="avatar you" aria-hidden="true">You</div>
             <div class="bubble-wrap">
-              <p class="who">你</p>
+              <p class="who">You</p>
               <div class="bubble you" id="learner-bubble"></div>
             </div>
           </div>
           <div class="row yibu-row">
             <div class="avatar yibu" aria-hidden="true">Y</div>
             <div class="bubble-wrap">
-              <p class="who">一步</p>
+              <p class="who">Yibu</p>
               <div class="bubble yibu" id="yibu-bubble" aria-live="polite"></div>
             </div>
           </div>
@@ -409,9 +409,9 @@
       };
 
       var LABELS = {
-        correction: { off: "关闭", light: "轻度", strict: "严格" },
-        topic: { "free-chat": "自由聊天", news: "新闻", interests: "兴趣" },
-        interruption: { never: "从不", "when-needed": "需要时", often: "经常" }
+        correction: { off: "Off", light: "Light", strict: "Strict" },
+        topic: { "free-chat": "Free chat", news: "News", interests: "Interests" },
+        interruption: { never: "Never", "when-needed": "When needed", often: "Often" }
       };
 
       var LEARNER = {
@@ -422,44 +422,44 @@
 
       var CORRECTION = {
         off: {
-          never: "真是一次愉快的出行——谢谢你告诉我。",
-          "when-needed": "语法我就先不改了。听起来真是一次很棒的出行。",
-          often: "哦，我不是故意打断你的——听起来已经是一次很棒的出行了！"
+          never: "What a nice outing — thanks for telling me about it.",
+          "when-needed": "I’ll leave the grammar as it is. That sounds like a really nice outing.",
+          often: "Oh, I don’t mean to cut you off — that already sounds like a really nice outing!"
         },
         light: {
-          never: "很棒。所以昨天你去了公园：yesterday you went to the park。",
-          "when-needed": "你说完了，我轻轻改一下：yesterday you went to the park。",
-          often: "——是 you went to the park，对吗？只是轻轻改一下。"
+          never: "Lovely. So yesterday you went to the park.",
+          "when-needed": "A gentle recast, now that you’ve finished: yesterday you went to the park.",
+          often: "—you went to the park, yes? Just a soft recast there."
         },
         strict: {
-          never: "继续之前，先说一个语法：我们说 “Yesterday I went to the park，” 而不是 “I go。” 在 “yesterday” 后面要用过去式 “went”。",
-          "when-needed": "最后改一处：应该说 “I went to the park，” 而不是 “I go。” “Went” 是 “go” 的过去式。",
-          often: "等一下——是 “I went，” 不是 “I go。” “Yesterday” 已经标明是过去，所以要用 “went”。"
+          never: "Before we go on, one grammar note: we say “Yesterday I went to the park,” not “I go.” After “yesterday,” use the past tense “went.”",
+          "when-needed": "One correction at the end: it’s “I went to the park,” not “I go.” “Went” is the past tense of “go.”",
+          often: "Hold on — “I went,” not “I go.” “Yesterday” already marks the past, so we need “went.”"
         }
       };
 
       var TOPIC = {
         "free-chat": {
-          never: "我很想听听你在那儿做了什么，以及那天剩下的时间是怎么过的。",
-          "when-needed": "你在公园里做了什么？是和别人一起去的吗？",
-          often: "你到了之后做了什么？"
+          never: "I’d love to hear what you did there and how the rest of your day went.",
+          "when-needed": "What did you do at the park? Did you go with anyone?",
+          often: "What did you do once you arrived?"
         },
         news: {
-          never: "我也很好奇，你有没有看到关于本市公园翻新计划的新闻。",
-          "when-needed": "你看过本周关于本市公园翻新的新闻吗？",
-          often: "你有没有关注本市公园翻新计划的新闻？"
+          never: "I’m also curious whether you came across any of the news about the city’s new park renovation plans.",
+          "when-needed": "Have you seen this week’s news about the city’s park renovations?",
+          often: "Have you caught the news about the city’s park renovation plans?"
         },
         interests: {
-          never: "我也想知道，户外活动是你平时的兴趣之一，还是偶尔的享受。",
-          "when-needed": "在公园散步是你的兴趣之一，还是这次只是偶尔去一下？",
-          often: "你喜欢公园和户外活动吗，还是这次只是偶尔去一次？"
+          never: "I’d also like to know whether being outdoors is one of your usual interests, or more of a rare treat.",
+          "when-needed": "Is walking in parks one of your interests, or was this a one-off visit?",
+          often: "Do you enjoy parks and being outdoors, or was this a one-off?"
         }
       };
 
       var INTERRUPT_NOTE = {
-        never: "一步会等你说完，再完整回复。",
-        "when-needed": "一步会等你说完，如果有值得提醒的地方再介入。",
-        often: "一步会在你话说到一半时插进来。"
+        never: "Yibu waits until you finish speaking, then replies in full.",
+        "when-needed": "Yibu lets you finish, then steps in if something is worth noting.",
+        often: "Yibu jumps in mid-sentence."
       };
 
       var state = loadState();
@@ -521,17 +521,17 @@
         yibuBubble.textContent = yibuReply();
         noteEl.textContent = INTERRUPT_NOTE[state.interruption];
         summaryEl.textContent = "";
-        summaryEl.appendChild(document.createTextNode("当前设置："));
+        summaryEl.appendChild(document.createTextNode("Current settings: "));
 
         var bits = [
-          ["纠错", LABELS.correction[state.correction]],
-          ["话题", LABELS.topic[state.topic]],
-          ["打断", LABELS.interruption[state.interruption]]
+          ["Correction", LABELS.correction[state.correction]],
+          ["Topic", LABELS.topic[state.topic]],
+          ["Interruptions", LABELS.interruption[state.interruption]]
         ];
         bits.forEach(function (bit, i) {
           if (i) summaryEl.appendChild(document.createTextNode(" · "));
           var strong = document.createElement("strong");
-          strong.textContent = bit[0] + "：" + bit[1];
+          strong.textContent = bit[0] + ": " + bit[1];
           summaryEl.appendChild(strong);
         });
       }

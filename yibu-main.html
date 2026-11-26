@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light">
-  <title>一步 Yibu — 英语学习应用</title>
+  <title>Yibu — English learning app</title>
   <style>
     :root {
       --teal: #0d8f7e;
@@ -21,7 +21,7 @@
       --learner: #eef2f1;
       --shadow: 0 8px 28px rgba(20, 36, 33, 0.08), 0 1px 2px rgba(20, 36, 33, 0.04);
       --radius: 20px;
-      --font: ui-sans-serif, system-ui, -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
       --focus: 0 0 0 3px var(--card), 0 0 0 5px var(--teal);
     }
 
@@ -76,6 +76,14 @@
       font-size: 1.35rem;
       letter-spacing: -0.03em;
       line-height: 1.2;
+    }
+
+    .cn-name {
+      font-weight: 550;
+      font-size: 0.72em;
+      letter-spacing: 0;
+      color: var(--muted);
+      margin-inline-start: 0.35em;
     }
 
     .brand p {
@@ -191,31 +199,31 @@
     <header>
       <div class="mark" aria-hidden="true">Y</div>
       <div class="brand">
-        <h1>一步 Yibu</h1>
-        <p>你的贴心英语导师</p>
+        <h1>Yibu <bdi class="cn-name">一步</bdi></h1>
+        <p>Your friendly English tutor</p>
       </div>
     </header>
 
     <main>
       <section class="card hero" aria-labelledby="hero-heading">
-        <img class="tutor-img" src="yibu-tutor.png" alt="一步 Yibu 语言学习助手" width="200" height="200">
-        <h2 id="hero-heading">轻松开口，和一步一起练英语</h2>
-        <p class="lede">一步是一款英语学习应用。你可以随时和导师一步聊天练习，围绕新闻或自己感兴趣的话题展开对话，并在需要时得到温和、清晰的纠正。想先看看一步会怎么回应？来调整一下导师设置吧。</p>
-        <a class="cta" href="yibu-settings.html">打开导师设置</a>
+        <img class="tutor-img" src="yibu-tutor.png" alt="Yibu tutor, a friendly language-learning assistant" width="200" height="200">
+        <h2 id="hero-heading">Speak freely, and practice English with Yibu</h2>
+        <p class="lede">Yibu is an English learning app. You can chat with tutor Yibu anytime to practice, talk about the news or topics you care about, and get gentle, clear corrections when you need them. Want to see how Yibu would reply first? Come adjust the tutor settings.</p>
+        <a class="cta" href="yibu-settings.html">Open tutor settings</a>
       </section>
 
       <div class="features">
         <section class="feature">
-          <h3>自由聊天</h3>
-          <p>和一步自然对话，随时练习开口，不用担心说错。</p>
+          <h3>Free chat</h3>
+          <p>Chat naturally with Yibu, practice speaking anytime, and don’t worry about making mistakes.</p>
         </section>
         <section class="feature">
-          <h3>温和纠错</h3>
-          <p>从轻轻带过到认真讲解，纠正的严格程度由你决定。</p>
+          <h3>Gentle corrections</h3>
+          <p>From a light recast to a careful explanation, you decide how strict the corrections are.</p>
         </section>
         <section class="feature">
-          <h3>按兴趣聊</h3>
-          <p>自由闲聊、新闻时事，或围绕你喜欢的话题展开练习。</p>
+          <h3>Follow your interests</h3>
+          <p>Free conversation, news and current events, or practice around topics you love.</p>
         </section>
       </div>
     </main>

@@ -90,18 +90,12 @@
 
     main {
       width: 100%;
-      max-width: 1080px;
+      max-width: 720px;
       margin: 0 auto;
-      padding: clamp(20px, 6vh, 64px) clamp(20px, 5vw, 48px) 48px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 48px;
-      align-items: start;
-    }
-
-    @media (min-width: 900px) {
-      main { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); column-gap: clamp(40px, 6vw, 88px); }
-      .preview-card { position: sticky; top: 96px; }
+      padding: clamp(20px, 6vh, 48px) clamp(20px, 5vw, 32px) 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
     }
 
     .card { animation: enter 0.3s ease-out; }
